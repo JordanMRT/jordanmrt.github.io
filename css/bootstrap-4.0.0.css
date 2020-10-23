@@ -5114,7 +5114,8 @@ tbody.collapse.show {
   font-size: 0.75rem;
   background-color: #e9ecef;
   border-radius: 0.25rem;
-box-shadow: 0px 0px 5px 1px black}
+  box-shadow: 0px 0px 5px 1px black;
+}
 
 .progress-bar {
   display: -webkit-box;
@@ -7506,7 +7507,7 @@ button.bg-dark:focus {
 
 .mt-4,
 .my-4 {
-  margin-top: 1.5rem !important;
+  margin-top: 3rem !important;
 }
 
 .mr-4,
