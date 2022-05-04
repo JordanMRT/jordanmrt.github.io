@@ -492,8 +492,6 @@ mark,
   border-radius: 0.25rem;
   max-width: 60%;
   height: 150px;
-  margin-top: 50vh;
-  transform: translateY(-50%);
 }
 
 .figure {
