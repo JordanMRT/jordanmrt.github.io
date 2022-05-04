@@ -903,7 +903,8 @@ color: #d4c7be}
     -webkit-box-flex: 0;
     -ms-flex: 0 0 33.333333%;
     flex: 0 0 33.333333%;
-    max-width: 33.333333%;
+    max-width: 25%;
+    max-height: 20%;
   }
   .col-sm-5 {
     -webkit-box-flex: 0;
