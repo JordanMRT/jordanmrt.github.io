@@ -8989,17 +8989,5 @@ body {background-color: #254a45;}
 
 /*KEYFRAMES TRANSITION TEST*/
 
-@keyframes wipe-in-up {
-  from {
-    clip-path: inset(100% 0 0 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-[transition-style="in:wipe:up"] {
-  animation: 2.5s cubic-bezier(.25, 1, .30, 1) wipe-in-up both;
-}
 
 /*# sourceMappingURL=bootstrap.css.map */
