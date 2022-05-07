@@ -8989,37 +8989,17 @@ body {background-color: #254a45;}
 
 /*KEYFRAMES TRANSITION TEST*/
 
-@keyframes wipe-enter {
-	0% {
-		transform: scale(0, .025);
-	}
-	50% {
-		transform: scale(1, .025);
-	}
-}
-@media (prefers-reduced-motion: no-preference) {
-  .progress {
-    animation-name: wipe-enter;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
+@keyframes wipe-in-up {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
   }
 }
-@media (prefers-reduced-motion: no-preference) {
-  .progress-animation {
-    animation: wipe-enter 1s 1;
-  }
-}
-const observer = new IntersectionObserver(entries => {
-  // Loop over the entries
-  entries.forEach(entry => {
-    // If the element is visible
-    if (entry.isIntersecting) {
-      // Add the animation class
-      entry.target.classList.add('square-animation');
-    }
-  });
-});
 
-observer.observe(document.querySelector('.square'));}
+[transition-style="in:wipe:up"] {
+  animation: 2.5s cubic-bezier(.25, 1, .30, 1) wipe-in-up both;
+}
 
 /*# sourceMappingURL=bootstrap.css.map */
