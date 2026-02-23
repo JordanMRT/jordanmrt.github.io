@@ -1,227 +1,498 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" data-theme="auto">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="google-site-verification" content="LJeFikmvT2qbvVwyeCrwxRljPyEI3QU2un3__oOXeJs" />
-    <meta http-equiv="refresh" content="0.1; URL=https://jordanmrt.github.io/social-media/">
-<title>Jordan EMERIT - Social Media Manager</title>
-  <!-- Bootstrap -->
-<style type="text/css">
-@import url("../css/bootstrap-4.0.0.css");
-</style>
-<link href="css/bootstrap-4.0.0.css" rel="stylesheet" type="text/css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon portfolio - Accueil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ease: cubic-bezier(0.23, 1, 0.32, 1);
+      --radius: 20px;
+      --bg:           #f2efe9;
+      --text:         #1c1916;
+      --text-muted:   #8a8278;
+      --border:       rgba(0,0,0,0.07);
+      --glass-bg:     rgba(245,242,236,0.6);
+      --glass-border: rgba(255,255,255,0.55);
+      --tag-bg:       rgba(0,0,0,0.07);
+      --tag-color:    #5a5248;
+      --toggle-track: #e0dbd2;
+      --toggle-thumb: #8a7a68;
+      --shadow-sm:    0 1px 4px rgba(0,0,0,0.05), 0 4px 18px rgba(0,0,0,0.06);
+      --shadow-lg:    0 8px 40px rgba(0,0,0,0.15);
+    }
+
+    [data-theme="dark"] {
+      --bg:           #0f0e0b;
+      --text:         #ece8e0;
+      --text-muted:   #7a7570;
+      --border:       rgba(255,255,255,0.06);
+      --glass-bg:     rgba(15,14,11,0.65);
+      --glass-border: rgba(255,255,255,0.11);
+      --tag-bg:       rgba(255,255,255,0.08);
+      --tag-color:    #b0a898;
+      --toggle-track: #28251e;
+      --toggle-thumb: #c4ad8a;
+      --shadow-sm:    0 1px 4px rgba(0,0,0,0.3), 0 4px 24px rgba(0,0,0,0.28);
+      --shadow-lg:    0 8px 50px rgba(0,0,0,0.55);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.45s var(--ease), color 0.45s var(--ease);
+    }
+
+    /* Ambient bg blob */
+    .ambient {
+      position: fixed;
+      inset: -15%;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 50% 45% at 18% 22%, rgba(185,165,135,0.12) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 50% at 82% 78%, rgba(155,145,125,0.09) 0%, transparent 65%);
+      will-change: transform;
+      transition: background 0.45s var(--ease);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 64px 24px 88px;
+    }
+
+    /* ── Header ── */
+    header {
+      margin-bottom: 48px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.85s var(--ease) 0.05s forwards;
+    }
+
+    header h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 1.12;
+    }
+
+    header h1 em {
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 0.93rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.65;
+      max-width: 360px;
+    }
+
+     footer p {
+       text-align: center;
+       margin-top: 40px;
+       font-size: 0.93rem;
+       color: var(--text-muted);
+       font-weight: 300;
+       line-height: 1.65;
+    }
+
+    /* Toggle */
+    .toggle {
+      flex-shrink: 0;
+      margin-top: 5px;
+      width: 48px; height: 26px;
+      background: var(--toggle-track);
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      position: relative;
+      transition: background 0.35s var(--ease), border-color 0.35s var(--ease);
+    }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--toggle-thumb);
+      transition: transform 0.35s var(--ease), background 0.35s var(--ease);
+    }
+    [data-theme="dark"] .toggle::after { transform: translateX(22px); }
+
+    /* ── Bento Grid ── */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 175px;
+      gap: 13px;
+    }
+
+    .c4  { grid-column: span 4; }
+    .c5  { grid-column: span 5; }
+    .c6  { grid-column: span 6; }
+    .c7  { grid-column: span 7; }
+    .c8  { grid-column: span 8; }
+    .c12 { grid-column: span 12; }
+    .r1  { grid-row: span 1; }
+    .r2  { grid-row: span 2; }
+
+    /* ── Card ── */
+    .card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      background: var(--card-bg, #ccc);
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        box-shadow 0.4s var(--ease),
+        transform  0.4s var(--ease),
+        border-color 0.4s;
+    }
+
+    .card.visible {
+      animation: fadeUp 0.65s var(--ease) forwards;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-5px) scale(1.013);
+      border-color: transparent;
+    }
+
+    /* Mouse-tracking spotlight */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle 240px at var(--mx, 50%) var(--my, 50%),
+        rgba(255,255,255,0.22) 0%,
+        transparent 68%
+      );
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+      z-index: 1;
+      border-radius: inherit;
+    }
+    .card:hover::before { opacity: 1; }
+
+    /* Subtle noise grain */
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      z-index: 1;
+      border-radius: inherit;
+    }
+
+    /* Glass label at bottom */
+    .card-label {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      z-index: 3;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px) saturate(1.6);
+      -webkit-backdrop-filter: blur(16px) saturate(1.6);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 11px 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      transition: background 0.45s var(--ease), border-color 0.45s var(--ease);
+    }
+
+    .label-main { flex: 1; min-width: 0; }
+
+    .card-title {
+      font-family: 'Lora', serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Description revealed on hover via max-height */
+    .card-desc {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.5;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s var(--ease), opacity 0.3s ease, margin-top 0.3s;
+    }
+    .card:hover .card-desc {
+      max-height: 50px;
+      opacity: 1;
+      margin-top: 3px;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 7px;
+    }
+
+    .tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--tag-bg);
+      color: var(--tag-color);
+      padding: 3px 8px;
+      border-radius: 100px;
+    }
+
+    /* Arrow button */
+    .card-arrow {
+      flex-shrink: 0;
+      width: 27px; height: 27px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s, transform 0.3s var(--ease);
+    }
+    .card-arrow svg {
+      width: 12px; height: 12px;
+      stroke: rgba(255,255,255,0.85);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .card:hover .card-arrow {
+      background: rgba(0,0,0,0.22);
+      transform: translate(2px, -2px);
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .bento { grid-template-columns: repeat(6,1fr); grid-auto-rows: 155px; }
+      .c4, .c5, .c7, .c8, .c12 { grid-column: span 6; }
+      .c6 { grid-column: span 3; }
+      .r2 { grid-row: span 2; }
+    }
+    @media (max-width: 440px) {
+      .container { padding: 38px 14px 60px; }
+      .bento { gap: 10px; grid-auto-rows: 140px; }
+      .c6 { grid-column: span 6; }
+    }
+  </style>
 </head>
-	<link rel"stylesheet" href="" type="text/css">
-	<body>
-    <div class="container">
-      <hr>
-      <div class="row">
-        <div class="col-6">
-          <h1>Jordan EMERIT</h1>
-        </div>
-        <div class="col-6">
-          <div class="col-6"><a href="http://jordanmrt.github.io"><img class="img-flags"  src="../images/frenchflag.png" alt="Français"></a></div> 
-<div class="col-6"><a href="http://jordanmrt.github.io/en/"><img class="img-flags"  src="../images/englishflag.png" alt="English"></a></div></div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-md-8 col-sm-12">
-          <div class="media">
-            <img class="mr-3" src="../images/headpic.png">
-            <div class="media-body">
-              <h5 class="mt-0">Social Media Manager</h5>
-              Webmaster d’un blog depuis 2012 // Créateur de contenu sur les réseaux sociaux.<br>
-              Connaissances en web-design et en langage web (CSS et HTML).<br>
-              Réseaux sociaux, relation client et maitrise des logiciels de création.
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-12">
-          <div class="row justify-content-md-around m-1">
-            <address>
-              <strong>Montpellier, 34000<br>
-              FRANCE<br>
-              <a href="mailto:emeritjordan@gmail.com">emeritjordan@gmail.com</a>
-            </address>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-md-6 col-sm-12">
-          <h2>Diplômes & Formations</h2>
-          <hr>
-          <div class="row">
-            <div class="col-6">
-              <h4>Bachelor Responsable Marketing Digital et Publicité en ligne</h4>
-            </div>
-            <div class="col-6">
-              <h5 class="text-right"><span aria-hidden="true"></span>Année 2022</h5>
-            </div>
-          </div>
-          <h5><span class="badge badge-secondary">OREEGAMI</span></h5>
-          <p>Formation développée pour OREEGAMI par Google.</p>
-<div class="row">
-            <div class="col-6">
-              <h4>Animer vos réseaux sociaux</h4>
-            </div>
-            <div class="col-6">
-              <h5 class="text-right"><span aria-hidden="true"></span>Année 2020</h5>
-            </div>
-          </div>
-          <h5><span class="badge badge-secondary">Open Classrooms</span></h5>
-          <p>Modération d'échanges sur les réseaux sociaux, création de contenu en respectant une charte gaphique et création de contenu riche de manière collaborative.</p>
-          <div class="row">
-            <div class="col-6">
-              <h4>Baccalauréat Littéraire</h4>
-            </div>
-            <div class="col-6">
-              <h5 class="text-right"><span aria-hidden="true"></span>Année 2016</h5>
-            </div>
-          </div>
-          <h5><span class="badge badge-secondary">Baccalauréat</span></h5>
-          <p>Baccalauréat littéraire spécialisé en musique.</p>
-        </div>
-        <div class="col-md-6 col-sm-12">
-          <h2>Soft skills</h2>
-          <hr>
-          <div class="progress mt-4">
-            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 60%"> PHOTOSHOP</div>
-          </div>
-          <div class="progress mt-4">
-            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%"> LIGHTROOM</div>
-          </div>
-          <div class="progress mt-4">
-            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 90%"> INSTAGRAM</div>
-          </div>
-          <div class="progress mt-4">
-            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 85%"> TWITTER</div>
-          </div>
-          <div class="progress mt-4">
-            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 80%"> FACEBOOK</div>
-          </div>
-<div class="progress mt-4">
-            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 90%"> TIKTOK</div>
-          </div>
-<div class="progress mt-4">
-            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%"> ENGLISH</div>
-          </div>
-          <div class="progress mt-4">
-            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 40%"> SPANISH</div>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <h2>Expériences</h2>
-      <hr>
-      <div class="row">
-        <div class="col-md-6 col-sm-12">
-          <div class="row">
-            <div class="col-5">
-              <h4>FAGUO</h4>
-            </div>
-            <div class="col-6">
-              <h5 class="text-right"><span aria-hidden="true"></span>Nov. 2019 - Fev. 2021</h5>
-            </div>
-          </div>
-          <h5><span class="badge badge-secondary">Conseiller de vente</span></h5>
-          <p>52 Grand'Rue Jean Moulin / MONTPELLIER 34000 <br>Marque de prêt-à-porter masculin française éco-responsable.</p>
-          <ul>
-            <li>Gestion de caisse.</li>
-            <li>Organisation et merchandising (vitrine & aplats).</li>
-            <li>Conseil et fidélisation client.</li>
-          </ul>
-        </div>
-		  <div class="col-md-6 col-sm-12">
-          <div class="row">
-            <div class="col-5 col-lg-5">
-              <h4>TIKTOK|INSTAGRAM</h4>
-            </div>
-            <div class="col-6">
-              <h5 class="text-right"><span aria-hidden="true"></span> Nov. 2020 - Actuel</h5>
-            </div>
-          </div>
-          <h5><span class="badge badge-secondary">Créateur de contenu</span></h5>
-          <p>MONTPELLIER 34000 <br>Création de contenu vidéos/photos et fidélisation d'une communauté.</p>
-          <ul>
-            <li>Edition d'images et montage de vidéos.</li>
-            <li>Mise en place d'une stratégie de communication.</li>
-            <li>Veille concurrentielle et suivi des tendances.</li>
-          </ul>
-        </div>
-        <div class="col-md-6 col-sm-12">
-          <div class="row">
-            <div class="col-5">
-              <h4>TEXTO</h4>
-            </div>
-            <div class="col-6">
-              <h5 class="text-right"><span aria-hidden="true"></span> Juill. 2019 - Nov. 2019</h5>
-            </div>
-          </div>
-          <h5><span class="badge badge-secondary">Conseiller de vente</span></h5>
-          <p>38 Grand'Rue Jean Moulin / MONTPELLIER 34000 <br>Vente de chaussures et maroquinerie.</p>
-          <ul>
-            <li>Gestion de caisse.</li>
-            <li>Accueil et conseil client.</li>
-            <li>Organisation, mise en avant des opérations commerciales.</li>
-          </ul>
-        </div>
-		  <div class="col-md-6 col-sm-12">
-          <div class="row">
-            <div class="col-5">
-              <h4>EKLABLOG</h4>
-            </div>
-            <div class="col-6">
-              <h5 class="text-right"><span aria-hidden="true"></span> Fév. 2012 - Mai 2019</h5>
-            </div>
-          </div>
-          <h5><span class="badge badge-secondary">Webmaster</span></h5>
-          <p>ANGOULÊME 16000 <br>Blog de partage d'astuces et de graphisme.</p>
-          <ul>
-            <li>Gestion de site web / Rédaction d'articles.</li>
-            <li>Référencement naturel (SEO).</li>
-            <li>Mise en page (CSS/HTML).</li>
-          </ul>
-        </div>
-      </div>
-      <hr>
-      <h2>Site & réseaux</h2>
-      <hr>
-      <div class="container">
-        <div class="row text-center">
-          <div class="col-sm-4 col-12 p-0"><a href="http://instagram.com/jordan.mrt"  target="_blank"><img class="img-thumbnail"  src="../images/insta_icon.png" alt="Jordan MRT sur Intagram"></a></div>
-          <div class="col-sm-4 col-12 p-0"><a href="http://codelyoko.ek.la"  target="_blank"><img class="img-thumbnail"  src="../images/web_icon.png" alt="Lyokograph' World - Hébergé par EklaBlog"></a></div>
-          <div class="col-sm-4 col-12 p-0"><a href="http://linkedin.com/in/jordan-mrt" target="_blank"><img class="img-thumbnail"  src="../images/icon_linkedin.png" alt="Jordan Emerit sur Linkedin"></a></div>
-          <div class="col-sm-4 col-12 p-0"><a href="http://www.tiktok.com/@imhappytobeyourfriend" target="_blank"><img class="img-thumbnail"  src="../images/tiktok-line.png" alt="ImHappyToBeYourFriend sur TikTok"></a></div>
-        </div>
-      </div>
-      <br>
-      <footer class="text-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <a href= "/">--- Télécharger le CV en cliquant ici ---</a>
-            </div>
-          </div>
-        </div>
-		  <br>
-      </footer>
-		<footer class="text-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <p>Copyright © Jordan EMERIT. Tous droits réservés.</p>
-            </div>
-          </div>
-        </div>
-      </footer>
+<body>
+
+<div class="ambient" id="ambient"></div>
+
+<div class="container">
+
+  <header>
+    <div>
+      <h1>Jordan <em>Emerit</em></h1>
+      <p>Une sélection de mes différents projets : construits, exploré et imaginé.</p>
     </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../js/jquery-3.2.1.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap-4.0.0.js"></script>
-  </body>
+    <button class="toggle" id="themeToggle" aria-label="Changer de thème"></button>
+  </header>
+
+  <div class="bento" id="grid">
+
+    <!-- 1 — Grande (7 cols × 2 rows) -->
+    <a href="https://jordanmrt.github.io/theletterclub/" class="card c7 r2" data-delay="0"
+       style="--card-bg: linear-gradient(140deg, #b8ccb0 0%, #8dab82 45%, #6a9070 100%);">
+      <div class="card-label">
+        <div class="label-main">
+          <div class="card-title">The Letter Club - Renouer avec l'écriture.</div>
+          <div class="card-desc">Site permettant de remettre au goût du jour l'écriture épistolaire en y déposant des lettres anonymement et une newsletter.</div>
+          <div class="card-tags">
+            <span class="tag">Art & poésie</span>
+            <span class="tag">Communauté</span>
+          </div>
+        </div>
+        <div class="card-arrow"><svg viewBox="0 0 16 16"><path d="M3 13 13 3M6 3h7v7"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 2 — (5 cols × 1 row) -->
+    <a href="https://jordanmrt.github.io/social-media/" class="card c5 r1" data-delay="70"
+       style="--card-bg: linear-gradient(135deg, #d4c0a0 0%, #b8946a 100%);">
+      <div class="card-label">
+        <div class="label-main">
+          <div class="card-title">Portfolio - Social Media Manager</div>
+          <div class="card-desc">Portfolio en ligne permettant de mettre en avant mes expériences professionnelles ainsi que de prendre contact avec moi.</div>
+          <div class="card-tags"><span class="tag">Professionnel</span><span class="tag">Recruteur</span></div>
+        </div>
+        <div class="card-arrow"><svg viewBox="0 0 16 16"><path d="M3 13 13 3M6 3h7v7"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 3 — (5 cols × 1 row) -->
+    <a href="https://github.com/JordanMRT" class="card c5 r1" data-delay="130"
+       style="--card-bg: linear-gradient(145deg, #c4b4d8 0%, #9880c0 100%);">
+      <div class="card-label">
+        <div class="label-main">
+          <div class="card-title">Github - Repositories</div>
+          <div class="card-desc">Ensemble des repositories utilisés pour héberger mes projets et les déployer via Github Pages.</div>
+          <div class="card-tags"><span class="tag">Professionnel</span><span class="tag">Code</span></div>
+        </div>
+        <div class="card-arrow"><svg viewBox="0 0 16 16"><path d="M3 13 13 3M6 3h7v7"/></svg></div>
+      </div>
+    </a>
+
+    <!--<!-- 4 — (4 cols × 1 row)
+    <a href="#" class="card c4 r1" data-delay="190"
+       style="--card-bg: linear-gradient(150deg, #a8c4d2 0%, #78a0bc 100%);">
+      <div class="card-label">
+        <div class="label-main">
+          <div class="card-title">Pulse — Analytics</div>
+          <div class="card-desc">Métriques clés en temps réel, sans bruit.</div>
+          <div class="card-tags"><span class="tag">Vue.js</span><span class="tag">D3</span></div>
+        </div>
+        <div class="card-arrow"><svg viewBox="0 0 16 16"><path d="M3 13 13 3M6 3h7v7"/></svg></div>
+      </div>
+    </a>-->
+
+    <!-- 5 — Large (8 cols × 1 row)
+    <a href="#" class="card c8 r1" data-delay="250"
+       style="--card-bg: linear-gradient(125deg, #d8c4a0 0%, #c8a86e 55%, #b08848 100%);">
+      <div class="card-label">
+        <div class="label-main">
+          <div class="card-title">Drafts — Éditeur minimaliste</div>
+          <div class="card-desc">Écriture sans distraction. Export Markdown, mode focus, offline.</div>
+          <div class="card-tags"><span class="tag">Svelte</span><span class="tag">Tauri</span></div>
+        </div>
+        <div class="card-arrow"><svg viewBox="0 0 16 16"><path d="M3 13 13 3M6 3h7v7"/></svg></div>
+      </div>
+    </a>-->
+
+    <!-- 6 — (6 cols × 1 row)
+    <a href="#" class="card c6 r1" data-delay="310"
+       style="--card-bg: linear-gradient(148deg, #c8beb0 0%, #a09080 100%);">
+      <div class="card-label">
+        <div class="label-main">
+          <div class="card-title">Vault — Mots de passe local</div>
+          <div class="card-desc">AES-256, sans cloud, sans dépendance externe.</div>
+          <div class="card-tags"><span class="tag">Rust</span><span class="tag">Tauri</span></div>
+        </div>
+        <div class="card-arrow"><svg viewBox="0 0 16 16"><path d="M3 13 13 3M6 3h7v7"/></svg></div>
+      </div>
+    </a>-->
+
+    <!-- 7 — (6 cols × 1 row)
+    <a href="#" class="card c6 r1" data-delay="370"
+       style="--card-bg: linear-gradient(132deg, #c0cab8 0%, #96a888 100%);">
+      <div class="card-label">
+        <div class="label-main">
+          <div class="card-title">Memo — Notes rapides</div>
+          <div class="card-desc">Capture instantanée, sync locale, offline-first par conception.</div>
+          <div class="card-tags"><span class="tag">Electron</span><span class="tag">SQLite</span></div>
+        </div>
+        <div class="card-arrow"><svg viewBox="0 0 16 16"><path d="M3 13 13 3M6 3h7v7"/></svg></div>
+      </div>
+    </a>-->
+
+  </div>
+<footer>
+<div><p> © Jordan Mrt - 2026</p></div>
+</div>
+</footer>
+
+<script>
+  /* Theme */
+  const html = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('theme');
+  const sys   = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  html.setAttribute('data-theme', saved || sys);
+
+  btn.addEventListener('click', () => {
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('theme'))
+      html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+  });
+
+  /* Scroll reveal */
+  const cards = document.querySelectorAll('.card');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(({ isIntersecting, target }) => {
+      if (!isIntersecting) return;
+      target.style.animationDelay = (target.dataset.delay || 0) + 'ms';
+      target.classList.add('visible');
+      io.unobserve(target);
+    });
+  }, { threshold: 0.08 });
+  cards.forEach(c => io.observe(c));
+
+  /* Mouse-tracking spotlight per card */
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width  * 100).toFixed(1) + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100).toFixed(1) + '%');
+    });
+  });
+
+  /* Ambient parallax */
+  const ambient = document.getElementById('ambient');
+  let raf;
+  document.addEventListener('mousemove', e => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      const x = (e.clientX / innerWidth  - 0.5) * 24;
+      const y = (e.clientY / innerHeight - 0.5) * 24;
+      ambient.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  });
+</script>
+</body>
 </html>
