@@ -325,6 +325,15 @@
       .c6 { grid-column: span 6; }
     }
   </style>
+
+<script>
+    (function() {
+      const saved = localStorage.getItem('theme');
+      const sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', saved || sys);
+    })();
+  </script>
+
 </head>
 <body>
 
@@ -446,9 +455,6 @@
   /* Theme */
   const html = document.documentElement;
   const btn  = document.getElementById('themeToggle');
-  const saved = localStorage.getItem('theme');
-  const sys   = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  html.setAttribute('data-theme', saved || sys);
 
   btn.addEventListener('click', () => {
     const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
