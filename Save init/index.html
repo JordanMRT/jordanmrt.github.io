@@ -27,7 +27,7 @@
     }
 
     [data-theme="dark"] {
-      --bg:           #201c13;
+      --bg:           #0f0e0b;
       --text:         #ece8e0;
       --text-muted:   #7a7570;
       --border:       rgba(255,255,255,0.06);
@@ -52,7 +52,7 @@
       transition: background 0.45s var(--ease), color 0.45s var(--ease);
     }
 
-    /* Ambient bg blob 
+    /* Ambient bg blob */
     .ambient {
       position: fixed;
       inset: -15%;
@@ -63,7 +63,7 @@
         radial-gradient(ellipse 45% 50% at 82% 78%, rgba(155,145,125,0.09) 0%, transparent 65%);
       will-change: transform;
       transition: background 0.45s var(--ease);
-    }*/
+    }
 
     .container {
       position: relative;
@@ -104,7 +104,7 @@
       color: var(--text-muted);
       font-weight: 300;
       line-height: 1.65;
-      max-width: 500px;
+      max-width: 360px;
     }
 
      footer p {
@@ -147,7 +147,7 @@
       gap: 13px;
     }
 
-    .c4  { grid-column: span 12; }
+    .c4  { grid-column: span 4; }
     .c5  { grid-column: span 5; }
     .c6  { grid-column: span 6; }
     .c7  { grid-column: span 7; }
@@ -324,70 +324,6 @@
       .bento { gap: 10px; grid-auto-rows: 140px; }
       .c6 { grid-column: span 6; }
     }
-
-    /* ── Patches ── */
-    .patch {
-      position: fixed;
-      width: 200px;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.88;
-      transition: opacity 0.4s var(--ease);
-    }
-
-    .patch img {
-      width: 100%;
-      height: auto;
-      display: block;
-      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.10));
-      transition: filter 0.4s var(--ease);
-    }
-
-    [data-theme="dark"] .patch img {
-      filter: drop-shadow(0 4px 20px rgba(0,0,0,0.35));
-    }
-
-    .patch-left {
-      left: calc(50% - 710px);
-      top: 65%;
-      transform: translateY(-50%) rotate(-8deg);
-    }
-
-    .patch-right {
-      right: calc(50% - 710px);
-      top: 30%;
-      transform: translateY(-50%) rotate(6deg);
-    }
-
-    /* Sur les écrans où les marges ne sont pas assez larges, on les cache */
-    @media (max-width: 1200px) {
-      .patch { display: none; }
-    }
-
-    /* Mobile : patches intégrés dans le flux, entre header et grille */
-    .patches-mobile {
-      display: none;
-      justify-content: center;
-      align-items: center;
-      gap: 24px;
-      margin-bottom: 28px;
-      opacity: 0;
-      transform: translateY(14px);
-      animation: fadeUp 0.85s var(--ease) 0.2s forwards;
-    }
-
-    .patches-mobile img {
-      width: 90px;
-      height: auto;
-      filter: drop-shadow(0 3px 10px rgba(0,0,0,0.10));
-    }
-
-    .patches-mobile .patch-left-m { transform: rotate(-7deg); }
-    .patches-mobile .patch-right-m { transform: rotate(5deg); }
-
-    @media (max-width: 1200px) {
-      .patches-mobile { display: flex; }
-    }
   </style>
 
 <script>
@@ -401,14 +337,6 @@
 </head>
 <body>
 
-<!-- Patches fixes desktop (dans les marges) -->
-<div class="patch patch-left">
-  <img src="patch-train01.png" alt="Illustration train" />
-</div>
-<div class="patch patch-right">
-  <img src="patch-enveloppe01.png" alt="Illustration enveloppe" />
-</div>
-
 <div class="ambient" id="ambient"></div>
 
 <div class="container">
@@ -416,16 +344,10 @@
   <header>
     <div>
       <h1>Jordan <em>Emerit</em></h1>
-      <p>Une sélection de mes différents projets : construits, explorés et imaginés.</p>
+      <p>Une sélection de mes différents projets : construits, exploré et imaginé.</p>
     </div>
     <button class="toggle" id="themeToggle" aria-label="Changer de thème"></button>
   </header>
-
-  <!-- Patches mobile (dans le flux) -->
-  <div class="patches-mobile">
-    <img class="patch-left-m" src="patch-train01.png" alt="Illustration train" />
-    <img class="patch-right-m" src="patch-enveloppe01.png" alt="Illustration enveloppe" />
-  </div>
 
   <div class="bento" id="grid">
 
