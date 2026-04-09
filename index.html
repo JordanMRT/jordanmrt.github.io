@@ -347,16 +347,28 @@
       filter: drop-shadow(0 4px 20px rgba(0,0,0,0.35));
     }
 
-    .patch-left {
+    .patch-left1 {
       left: calc(50% - 710px);
-      top: 65%;
+      top: 70%;
       transform: translateY(-50%) rotate(-8deg);
     }
 
-    .patch-right {
+   .patch-left2 {
+      left: calc(50% - 680px);
+      top: 40%;
+      transform: translateY(-50%) rotate(20deg);
+    }
+
+    .patch-right1 {
       right: calc(50% - 710px);
-      top: 30%;
+      top: 40%;
       transform: translateY(-50%) rotate(6deg);
+    }
+
+    .patch-right2 {
+      right: calc(50% - 680px);
+      top: 80%;
+      transform: translateY(-50%) rotate(-6deg);
     }
 
     /* Sur les écrans où les marges ne sont pas assez larges, on les cache */
@@ -382,8 +394,8 @@
       filter: drop-shadow(0 3px 10px rgba(0,0,0,0.10));
     }
 
-    .patches-mobile .patch-left-m { transform: rotate(-7deg); }
-    .patches-mobile .patch-right-m { transform: rotate(5deg); }
+    .patches-mobile .patch-left1-m .patch-left2-m { transform: rotate(-7deg); }
+    .patches-mobile .patch-right1-m .patch-right2-m { transform: rotate(5deg); }
 
     @media (max-width: 1200px) {
       .patches-mobile { display: flex; }
@@ -402,11 +414,17 @@
 <body>
 
 <!-- Patches fixes desktop (dans les marges) -->
-<div class="patch patch-left">
+<div class="patch patch-left1">
   <img src="patch-train01.png" alt="Illustration train" />
 </div>
-<div class="patch patch-right">
+<div class="patch patch-right1">
   <img src="patch-enveloppe01.png" alt="Illustration enveloppe" />
+</div>
+<div class="patch patch-left2">
+  <img src="patch-moon01.png" alt="Illustration lune" />
+</div>
+<div class="patch patch-right2">
+  <img src="patch-desert01.png" alt="Illustration desert" />
 </div>
 
 <div class="ambient" id="ambient"></div>
@@ -423,8 +441,10 @@
 
   <!-- Patches mobile (dans le flux) -->
   <div class="patches-mobile">
-    <img class="patch-left-m" src="patch-train01.png" alt="Illustration train" />
-    <img class="patch-right-m" src="patch-enveloppe01.png" alt="Illustration enveloppe" />
+    <img class="patch-left1-m" src="patch-train01.png" alt="Illustration train" />
+    <img class="patch-right1-m" src="patch-enveloppe01.png" alt="Illustration enveloppe" />
+    <img class="patch-left2-m" src="patch-moon01.png" alt="Illustration lune" />
+    <img class="patch-right2-m" src="patch-desert01.png" alt="Illustration désert" />
   </div>
 
   <div class="bento" id="grid">
