@@ -43,6 +43,10 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html, body {
+    overflow-x: hidden;
+    }
+
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
@@ -64,6 +68,23 @@
       will-change: transform;
       transition: background 0.45s var(--ease);
     }*/
+
+.texture {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url('bg-dot.png');
+  background-repeat: repeat;
+  background-size: 25px 25px;
+  opacity: 0.1;
+  transition: filter 0.45s var(--ease);
+}
+
+[data-theme="dark"] .texture {
+  filter: invert(1);
+  opacity: 0.15;
+}
 
     .container {
       position: relative;
@@ -329,7 +350,7 @@
     .patch {
       position: fixed;
       width: 200px;
-      pointer-events: none;
+      pointer-events: auto;
       z-index: 0;
       opacity: 0.88;
       transition: opacity 0.4s var(--ease);
@@ -339,12 +360,18 @@
       width: 100%;
       height: auto;
       display: block;
-      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.10));
-      transition: filter 0.4s var(--ease);
+      filter: drop-shadow(-3px 6px 5px #21212130);
+      transition: 
+      filter 0.4s var(--ease),
+      transform 0.4s var(--ease);
     }
 
     [data-theme="dark"] .patch img {
-      filter: drop-shadow(0 4px 20px rgba(0,0,0,0.35));
+      filter: drop-shadow(-3px 6px 5px #00000070);
+    }
+
+    .patch img:hover {
+      transform: rotate(9deg);
     }
 
     .patch-left1 {
@@ -394,8 +421,15 @@
       filter: drop-shadow(0 3px 10px rgba(0,0,0,0.10));
     }
 
-    .patches-mobile .patch-left1-m .patch-left2-m { transform: rotate(-7deg); }
-    .patches-mobile .patch-right1-m .patch-right2-m { transform: rotate(5deg); }
+.patches-mobile .patch-left1-m,
+.patches-mobile .patch-left2-m {
+  transform: rotate(-7deg);
+}
+
+.patches-mobile .patch-right1-m,
+.patches-mobile .patch-right2-m {
+  transform: rotate(5deg);
+}
 
     @media (max-width: 1200px) {
       .patches-mobile { display: flex; }
@@ -412,6 +446,8 @@
 
 </head>
 <body>
+
+<div class="texture"></div>
 
 <!-- Patches fixes desktop (dans les marges) -->
 <div class="patch patch-left1">
