@@ -438,10 +438,9 @@
 
 <script>
     (function() {
-      const saved = localStorage.getItem('theme');
-      const sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', saved || sys);
-    })();
+  const sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', sys);
+})();
   </script>
   <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
 </head>
@@ -585,20 +584,18 @@
 </footer>
 
 <script>
-  /* Theme */
-  const html = document.documentElement;
-  const btn  = document.getElementById('themeToggle');
+ /* Theme */
+const html = document.documentElement;
+const btn  = document.getElementById('themeToggle');
 
-  btn.addEventListener('click', () => {
-    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-  });
+btn.addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+});
 
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    if (!localStorage.getItem('theme'))
-      html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-  });
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+});
 
   /* Scroll reveal */
   const cards = document.querySelectorAll('.card');
