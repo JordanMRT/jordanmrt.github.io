@@ -1,0 +1,684 @@
+<html lang="fr" data-theme="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A propos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+
+<style>
+    :root {
+      --ease: cubic-bezier(0.23, 1, 0.32, 1);
+      --radius: 20px;
+      --bg:           #f2efe9;
+      --text:         #1c1916;
+      --text-muted:   #8a8278;
+      --border:       rgba(0,0,0,0.07);
+      --glass-bg:     rgba(245,242,236,0.6);
+      --glass-border: rgba(255,255,255,0.55);
+      --tag-bg:       rgba(0,0,0,0.07);
+      --tag-color:    #5a5248;
+      --toggle-track: #e0dbd2;
+      --toggle-thumb: #8a7a68;
+      --shadow-sm:    0 1px 4px rgba(0,0,0,0.05), 0 4px 18px rgba(0,0,0,0.06);
+      --shadow-lg:    0 8px 40px rgba(0,0,0,0.15);
+    }
+
+    [data-theme="dark"] {
+      --bg:           #201c13;
+      --text:         #ece8e0;
+      --text-muted:   #7a7570;
+      --border:       rgba(255,255,255,0.06);
+      --glass-bg:     rgba(15,14,11,0.65);
+      --glass-border: rgba(255,255,255,0.11);
+      --tag-bg:       rgba(255,255,255,0.08);
+      --tag-color:    #b0a898;
+      --toggle-track: #28251e;
+      --toggle-thumb: #c4ad8a;
+      --shadow-sm:    0 1px 4px rgba(0,0,0,0.3), 0 4px 24px rgba(0,0,0,0.28);
+      --shadow-lg:    0 8px 50px rgba(0,0,0,0.55);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+    overflow-x: hidden;
+    }
+
+body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.45s var(--ease), color 0.45s var(--ease);
+    }
+
+.container {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 64px 24px 88px;
+    }
+
+.wrapper {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* ── HEADER ── */
+.back-btn {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-size: 11px;
+  color: var(--text-muted);
+  background-color: var(--toggle-track);
+  text-decoration: none;
+  letter-spacing: 2px;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 5px 14px;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  color: var(--text);
+  border-color: var(--toggle-thumb);
+}
+
+header {
+  margin-bottom: 48px;
+  display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.85s var(--ease) 0.05s forwards;
+    }
+
+    header h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 1.12;
+    }
+
+    header h1 em {
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 0.93rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.65;
+      max-width: 500px;
+    }
+
+    /* Toggle */
+    .toggle {
+      flex-shrink: 0;
+      margin-top: 5px;
+      width: 48px; height: 26px;
+      background: var(--toggle-track);
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      position: relative;
+      transition: background 0.35s var(--ease), border-color 0.35s var(--ease);
+    }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--toggle-thumb);
+      transition: transform 0.35s var(--ease), background 0.35s var(--ease);
+    }
+    [data-theme="dark"] .toggle::after { transform: translateX(22px); }
+
+/* ── SECTIONS ── */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.93rem;
+}
+
+.section-label {
+  font-family: 'Lora', serif;
+  letter-spacing: 3px;
+  color: var(--tag-color);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--toggle-track);
+  max-width: fit-content;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+}
+
+/*.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #2a2a2a;
+}*/
+
+.section-num {
+  background: var(--bg);
+  color: var(--text);
+  padding: 1px 5px;
+  border-radius: 50px;
+}
+
+.section-body {
+  line-height: 1.9;
+  color: var(--text)
+}
+
+.section-body p + p {
+  margin-top: 0.8rem;
+}
+
+.section-body em {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.section-body strong {
+  color: #f5f0e8;
+  font-style: normal;
+}
+
+/* ── ASCII TICKET ── */
+.ascii-ticket {
+  background: #f5f0e8;
+  color: #1a1a1a;
+  font-size: 10px;
+  line-height: 1.5;
+  padding: 1rem 1.2rem;
+  border-radius: 3px;
+  white-space: pre;
+  display: inline-block;
+  margin: 0.5rem 0;
+  position: relative;
+}
+
+.ascii-ticket::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(90deg, #ccc 0px, #ccc 6px, #f5f0e8 6px, #f5f0e8 12px);
+}
+
+/* ── FONCTIONNEMENT ── */
+.flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.flow-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text);
+  line-height: 1.6;
+  align-items: center;
+}
+
+.flow-step-num {
+  font-family: 'Lora', serif;
+  font-size: 18px;
+  color: #333;
+  line-height: 1;
+  min-width: 18px;
+}
+
+.flow-step-text strong {
+  color: var(--text-muted);
+}
+
+/* ── LIENS ── */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border: 1px solid #2a2a2a;
+  text-decoration: none;
+  transition: all 0.2s;
+  gap: 1rem;
+}
+
+.link-item:hover {
+  border-color: #444;
+  background: #222;
+}
+
+.link-label {
+  font-size: 10px;
+  color: #010101;
+  letter-spacing: 1px;
+}
+
+.link-desc {
+  font-size: 9px;
+  color: #444;
+  letter-spacing: 1px;
+  text-align: right;
+}
+
+.link-item.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ── CRÉATEUR ── */
+.creator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  background-color: var(--bg);
+  box-shadow: 0 0 5px var(--border);
+}
+
+.creator-photo {
+  font-family: 'Lora', serif;
+  font-size: 28px;
+  color: #333;
+  line-height: 1;
+  white-space: pre;
+}
+
+.creator-photo img {
+  max-width: 100px;
+  border-radius: 100px;
+  border: 2px solid var(--border);
+  filter:drop-shadow(0 0 5px var(--border));
+}
+
+.creator-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.creator-name {
+  font-size: 0.93rem;
+  color: var(--tag-color);
+  letter-spacing: 1px;
+}
+
+.creator-role {
+  font-size: 0.73rem;
+  color: #444;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.creator-link {
+  font-size: 0.73rem;
+  color: #555;
+  text-decoration: none;
+  letter-spacing: 1px;
+  margin-top: 2px;
+  transition: color 0.2s;
+}
+
+.creator-link:hover {
+  color: var(--text-muted);
+}
+
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  font-size: 9px;
+  color: #2a2a2a;
+  letter-spacing: 2px;
+  padding-top: 1rem;
+  border-top: 1px solid #222;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+  .ascii-ticket {
+    font-size: 8.5px;
+  }
+}
+
+/*TEXTURE*/
+.texture {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: url('bg-dot.png');
+  background-repeat: repeat;
+  background-size: 25px 25px;
+  opacity: 0.1;
+  transition: filter 0.45s var(--ease);
+}
+
+[data-theme="dark"] .texture {
+  filter: invert(1);
+  opacity: 0.15;
+}
+
+/*FOOTER*/
+footer p {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.93rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.65;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /*PATCHES*/
+    .patch {
+      position: fixed;
+      width: 200px;
+      pointer-events: auto;
+      z-index: 0;
+      opacity: 0.88;
+      transition: opacity 0.4s var(--ease);
+    }
+
+    .patch img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(-3px 6px 5px #21212130);
+      transition: 
+      filter 0.4s var(--ease),
+      transform 0.4s var(--ease);
+    }
+
+    [data-theme="dark"] .patch img {
+      filter: drop-shadow(-3px 6px 5px #00000070);
+    }
+
+    .patch img:hover {
+      transform: rotate(9deg);
+    }
+
+    .patch-left1 {
+      left: calc(50% - 710px);
+      top: 70%;
+      transform: translateY(-50%) rotate(-8deg);
+    }
+
+   .patch-left2 {
+      left: calc(50% - 680px);
+      top: 40%;
+      transform: translateY(-50%) rotate(20deg);
+    }
+
+    .patch-right1 {
+      right: calc(50% - 710px);
+      top: 40%;
+      transform: translateY(-50%) rotate(6deg);
+    }
+
+    .patch-right2 {
+      right: calc(50% - 680px);
+      top: 80%;
+      transform: translateY(-50%) rotate(-6deg);
+    }
+
+    /* Sur les écrans où les marges ne sont pas assez larges, on les cache */
+    @media (max-width: 1900px) {
+      .patch { display: none; }
+    }
+
+    /* Mobile : patches intégrés dans le flux, entre header et grille */
+    .patches-mobile {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: fadeUp 0.85s var(--ease) 0.2s forwards;
+    }
+
+    .patches-mobile img {
+      width: 90px;
+      height: auto;
+      filter: drop-shadow(0 3px 10px rgba(0,0,0,0.10));
+    }
+
+.patches-mobile .patch-left1-m,
+.patches-mobile .patch-left2-m {
+  transform: rotate(-7deg);
+}
+
+.patches-mobile .patch-right1-m,
+.patches-mobile .patch-right2-m {
+  transform: rotate(5deg);
+}
+
+    @media (max-width: 1900px) {
+      .patches-mobile { display: flex; }
+    }
+
+/*WORD SLIDER HEADER SUBTITLE*/
+.subtitle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.word-slider {
+  display: inline-flex;
+  height: 1.3em;
+  overflow: hidden;
+  position: relative;
+}
+
+.words {
+  display: flex;
+  flex-direction: column;
+  animation: slide 4.5s infinite;
+}
+
+.words span {
+  height: 1.3em;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes slide {
+
+  0%, 18% {
+    transform: translateY(0);
+  }
+
+  25%, 43% {
+    transform: translateY(-1.3em);
+  }
+
+  50%, 68% {
+    transform: translateY(-2.6em);
+  }
+
+  75%, 93% {
+    transform: translateY(-3.9em);
+  }
+
+  100% {
+    transform: translateY(-5.2em);
+  }
+}
+
+/*GALERIE*/
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 16px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+  /*filter: brightness(1.05);*/
+}
+
+@view-transition {
+  navigation: auto;
+}
+</style>
+<script>
+    (function() {
+  const sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', sys);
+})();
+  </script>
+  <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
+</head>
+<body>
+  
+<div class="texture"></div>
+
+  <div class="container">
+
+  <!-- HEADER -->
+   <header>
+  <div class="header">
+      <h1>Jordan <em>Emerit</em></h1>
+      <p class="subtitle">
+  Créateur
+  <span class="word-slider">
+    <span class="words">
+      <span>de contenu.</span>
+      <span>d'expériences.</span>
+      <span>d'univers.</span>
+      <span>d'émotions.</span>
+      <span>de contenu.</span>
+    </span>
+  </span>
+</p>
+    <a href="index.html" class="back-btn">← Revenir aux projets</a>
+  </div>
+  <button class="toggle" id="themeToggle" aria-label="Changer de thème"></button>
+  </header>
+
+  <!-- Patches mobile (dans le flux) -->
+  <div class="patches-mobile">
+    <img class="patch-left1-m" src="patch-train01.png" alt="Illustration train" />
+    <img class="patch-right1-m" src="patch-enveloppe01.png" alt="Illustration enveloppe" />
+    <img class="patch-left2-m" src="patch-moon01.png" alt="Illustration lune" />
+    <img class="patch-right2-m" src="patch-desert01.png" alt="Illustration désert" />
+  </div>
+
+  <!-- 01 — L'HISTOIRE -->
+  <div class="section">
+    <div class="section-label">
+      <span class="section-num">01</span>
+      Qui suis-je
+    </div>
+    <div class="section-body">
+      <p>À la création de mon tout premier blog en 2012, j'ai découvert ce qu'internet m'offrait : un terrain de jeu quasi-infini pour créer et partager. Je passais nuit et jour à écrire, penser, mais aussi à apprivoiser Photoshop et le langage de développement.</p>
+      <p><em>J'étais passionné et émerveillé.</em></p>
+      <p>Tout seul, je passais mon temps à bricoler en fouillant dans la console de développement et à essayer de comprendre comment ça fonctionnait et ce que je pouvais modifier <em>(tout ça juste pour arrondir le bord des menus)</em>.</p>
+      <p>Avec le temps, ce jeu de création devenait encore plus intense <em>alors j'ai tout diversifié.</em> Après le web, j'ai commencé la photo, la vidéo, les réseaux sociaux... pour finalement tout combiner du mieux que je le pouvais.</p>
+      <p>Mais il me manquait quelque chose. Les sites internet de SaaS et les entreprises ont commencé à pulluler et m'ont fait réaliser une chose : <em>le web était devenu trop sérieux</em>. Pas partout, certes, mais pour l'utilisateur lambda, si.</p>
+      <p>Alors j'ai commencé à imaginer des expériences, à ramener de l'organique. D'un tracker SNCF en temps réel pour les ferrovipathes comme moi, à une boîte aux lettres virtuelle en passant par un recueil de souvenirs. Je pouvais à présent allier mon hobby de coder, mon envie de partager grâce aux projets communautaires et mon besoin de créativité.</p>
+      <p>J'ai 27 ans <i>(bientôt 28)</i> au moment où j'écris ces lignes dans VS Code, et j'apprends encore chaque jour, maintenant aidé de Claude AI pour les idées les plus complexes.</p>
+    </div>
+  </div>
+
+  <!-- 02 — LA GALERIE -->
+  <div class="section">
+    <div class="section-label">
+      <span class="section-num">02</span>
+      Galerie
+    </div>
+    <div class="section-body">
+      <div class="gallery">
+      <img src="repo-theletterclub-preview.jpeg" alt="The Letter Club">
+      <img src="repo-SNCFLive-preview.jpeg" alt="SNCF Live Preview">
+      <img src="repo-gus-preview.jpeg" alt="GUS">
+      <img src="repo-socialmedia-preview.jpeg" alt="Social Media Portfolio">
+    </div>
+   </div>
+  </div>
+
+  
+  <!-- 03 — LE CRÉATEUR -->
+  <div class="section">
+    <div class="section-label">
+      <span class="section-num">03</span>
+      Carte de visite
+    </div>
+    <a href="https://jordanmrt.github.io/social-media" target="_blank" style="text-decoration:none">
+      <div class="creator">
+        <div class="creator-photo"><img src="headpic.png"></div>
+        <div class="creator-info">
+          <span class="creator-name">Jordan Emerit</span>
+          <span class="creator-role">designer · développeur · social media manager · créateur d'expériences</span>
+          <span class="creator-link">CV et contact →</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+<footer>
+<div><p> © Jordan Emerit - 2026</p></div>
+</footer>
+
+</div></div>
+<script>
+  /* Theme */
+const html = document.documentElement;
+const btn  = document.getElementById('themeToggle');
+
+btn.addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+});
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+});
+</script>
+</body>
+</html>

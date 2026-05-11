@@ -128,6 +128,25 @@
       max-width: 500px;
     }
 
+    .back-btn {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-size: 11px;
+  color: var(--text-muted);
+  background-color: var(--toggle-track);
+  text-decoration: none;
+  letter-spacing: 2px;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 5px 14px;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  color: var(--text);
+  border-color: var(--toggle-thumb);
+}
+
      footer p {
        text-align: center;
        margin-top: 40px;
@@ -434,6 +453,10 @@
     @media (max-width: 1200px) {
       .patches-mobile { display: flex; }
     }
+
+    @view-transition {
+  navigation: auto;
+}
   </style>
 
 <script>
@@ -470,6 +493,7 @@
     <div>
       <h1>Jordan <em>Emerit</em></h1>
       <p>Une sélection de mes différents projets : construits, explorés et imaginés.</p>
+      <a href="index.html" class="back-btn">À propos →</a>
     </div>
     <button class="toggle" id="themeToggle" aria-label="Changer de thème"></button>
   </header>
